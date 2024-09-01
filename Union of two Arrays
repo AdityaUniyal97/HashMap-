@@ -1,0 +1,35 @@
+// Union of two unsorted array(distinct Element b/w two arrays)
+import java.util.*;
+class A
+{
+    public static int unionSize(int arr1[] , int arr2[] , int m , int n)
+    {
+        HashSet<Integer> hs = new HashSet<Integer>();
+        for(int i =0 ; i < m ; i++)
+        {
+            hs.add(arr1[i]);
+        }
+        for(int i =0 ; i < n ; i ++)
+        {
+            hs.add(arr2[i]);
+        }
+        
+        System.out.print("Union of Two Sorted Array is = ");
+        for(int i = 0 ; i < n ; i ++)
+        {
+            System.out.print(arr2[i]+" ");
+        }
+        System.out.println();
+        return hs.size();
+    }
+    
+    public static void main(String args[])
+    {
+        int arr1[] = new int[]{10, 30, 10, 40};
+        int m = arr1.length;
+        int arr2[] = new int[]{40, 5, 10, 15};
+        int n = arr2.length;
+       int s =  unionSize(arr1, arr2, m, n );
+       System.out.println("Distinct Element are  :- > "+s);
+    }
+}
