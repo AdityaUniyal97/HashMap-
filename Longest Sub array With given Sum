@@ -1,0 +1,42 @@
+import java.util.HashMap;
+
+class A {
+    public static int largest(int arr[], int n, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int sum = 0;
+        int maxlen = 0;
+
+        for (int i = 0; i < n; i++) {
+            sum = sum + arr[i];
+
+            // If sum is equal to the target sum k
+            if (sum == k) {
+                maxlen = i + 1;
+            }
+
+            // If this sum has not been seen before, add it to the map with its index
+            if (!map.containsKey(sum)) {
+                map.put(sum, i);
+            }
+
+            // If map contains (sum - k), it means there is a subarray with sum k
+            if (map.containsKey(sum - k)) {
+                // Update maxlen if we find a longer subarray
+                if (maxlen < (i - map.get(sum - k))) {
+                    maxlen = i - map.get(sum - k);
+                }
+            }
+        }
+
+        return maxlen;
+    }
+
+    public static void main(String args[]) {
+        int arr[] = {5, 2, 3}; // Array declaration corrected
+        int k = 5; // Given sum
+        int n = arr.length; // Length of the array
+
+        // Output the length of the largest subarray with sum k
+        System.out.println(largest(arr, n, k)); // Should print the length of the largest subarray
+    }
+}
